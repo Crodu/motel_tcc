@@ -55,7 +55,7 @@ public class TelaLoginController implements Initializable {
             if (func.get(0).getSenha().trim().equals(Senha.trim())) {
                 func.get(0).setLogado(true);
                 d.inserir(func.get(0));
-                Parent parent = FXMLLoader.load(getClass().getResource("tela_principal.fxml"));
+                Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("javaFx/telas/principal/tela_principal.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(parent);
                 stage.setScene(scene);

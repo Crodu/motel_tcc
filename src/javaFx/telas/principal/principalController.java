@@ -3,23 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaFx.telas;
+package javaFx.telas.principal;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.org.apache.regexp.internal.REDebugCompiler;
 import hibernate.Dao;
+import static java.awt.Color.RED;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.util.StringConverter;
 import javax.swing.JOptionPane;
 import objetos.Funcionario;
@@ -31,6 +37,9 @@ import objetos.Produto;
  * @author Lurguers
  */
 public class principalController implements Initializable{
+    
+    public Dao d;
+    
     @FXML
     private JFXButton btnHome;
     @FXML
@@ -39,6 +48,7 @@ public class principalController implements Initializable{
     private JFXButton btnConsProd;
     @FXML
     private JFXButton btnCadFunc;
+      
     @FXML
     private Pane consulProd;
     @FXML
@@ -141,6 +151,29 @@ public class principalController implements Initializable{
     private Label Notificacao1;
     @FXML
     private Label NotificacaoSenhas;
+    
+    @FXML
+    private Button btnBuscaProdID;
+    @FXML
+    private Button btnBuscaProdNome;  
+    @FXML
+    private JFXTextField txtCodProd;
+    @FXML
+    private JFXTextField txtNomeProd;
+    @FXML
+    private TableView tabelaProdutos;
+    @FXML
+    private TableColumn colid;
+    @FXML
+    private TableColumn colcodigo;
+    @FXML
+    private TableColumn colnome;
+    @FXML
+    private TableColumn coldesc;
+    @FXML
+    private Label lblStatusConProd;
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //seta o combobox de cargos do cadastro de funcionario
@@ -154,7 +187,7 @@ public class principalController implements Initializable{
         consulProd.setVisible(false);
         cadFuncionario.setVisible(false);
         //seta o nome do usuario logado na label
-        Dao d = new Dao();
+        d = new Dao();
         List<Funcionario> funcionarioLogado = d.consultar(Funcionario.class, "logado", true);
         nomeLogado.setText("Bem vindo, "+funcionarioLogado.get(0).getNome()+".");
         //valida os campos do cadastro de produtos
@@ -169,6 +202,22 @@ public class principalController implements Initializable{
         MaskFieldUtil.monetaryField(salarioFunc);
         MaskFieldUtil.onlyAlfaNumericValue(numFunc);
     }
+    
+    @FXML
+    private void btnBuscaProdIdClick(ActionEvent event){
+        List<Produto> result = d.consultar(Produto.class, "codigo", txtCodProd.getText());
+        if (result.isEmpty()){
+            lblStatusConProd.setText("Nenhum produto encontrado.");
+        }else{            
+            
+        }
+        
+    }
+    @FXML
+    private void btnBuscaProdNomeClick(ActionEvent event){
+        System.out.println("nome");
+    }
+    
     @FXML
     private void homeClick(ActionEvent event){
         quartos.setVisible(true);

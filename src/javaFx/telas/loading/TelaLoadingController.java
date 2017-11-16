@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,7 +32,7 @@ import javafx.stage.StageStyle;
 public class TelaLoadingController implements Initializable{
     
     @FXML
-    private StackPane rootPane;
+    private AnchorPane rootPane;
     
     @FXML
     private ProgressBar progress;
@@ -67,6 +68,7 @@ public class TelaLoadingController implements Initializable{
                             stage.initStyle(StageStyle.UNDECORATED);
                             stage.setScene(scene);
                             stage.show();
+                            
                             rootPane.getScene().getWindow().hide();
                         }
                     });

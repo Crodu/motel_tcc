@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="427.0" style="-fx-background-color: #476a9b;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.telas.loading.TelaLoadingController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="427.0" style="-fx-background-color: #476a9b;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.telas.loading.TelaLoadingController">
    <children>
       <Label fx:id="label" alignment="CENTER" layoutX="127.0" layoutY="57.0" prefHeight="74.0" prefWidth="173.0" text="MOTEL">
          <font>
