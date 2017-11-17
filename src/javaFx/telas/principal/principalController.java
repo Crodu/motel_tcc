@@ -14,7 +14,14 @@ import hibernate.Dao;
 import static java.awt.Color.RED;
 import java.net.URL;
 import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -161,15 +168,23 @@ public class principalController implements Initializable{
     @FXML
     private JFXTextField txtNomeProd;
     @FXML
-    private TableView tabelaProdutos;
+    private TableView<Produto> tabelaProdutos;
     @FXML
-    private TableColumn colid;
+    private TableColumn<Produto, Integer> colid;
     @FXML
-    private TableColumn colcodigo;
+    private TableColumn<Produto, String> colcodigo;
     @FXML
-    private TableColumn colnome;
+    private TableColumn<Produto, String> colnome;
     @FXML
-    private TableColumn coldesc;
+    private TableColumn<Produto, String> coldesc;
+    @FXML
+    private TableColumn<Produto, Float> colvalcompra;
+    @FXML
+    private TableColumn<Produto, Float> colvalvenda;
+    @FXML
+    private TableColumn<Produto, Integer> colqtdestoque;
+    @FXML
+    private TableColumn<Produto, String> colunidade;
     @FXML
     private Label lblStatusConProd;
     
@@ -201,6 +216,21 @@ public class principalController implements Initializable{
         MaskFieldUtil.foneField(telFunc);
         MaskFieldUtil.monetaryField(salarioFunc);
         MaskFieldUtil.onlyAlfaNumericValue(numFunc);
+        
+        colid.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        colqtdestoque.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getQtdEstoque()).asObject());
+        
+        colvalcompra.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getValorCompra()).asObject());
+        colvalvenda.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getValorVenda()).asObject());
+        
+        colcodigo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigo()));
+        colnome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
+        coldesc.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescricao()));
+        colunidade.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnidade()));
+        
+        
+        
+        
     }
     
     @FXML
@@ -209,13 +239,20 @@ public class principalController implements Initializable{
         if (result.isEmpty()){
             lblStatusConProd.setText("Nenhum produto encontrado.");
         }else{            
-            
+            ObservableList<Produto> obsresult = FXCollections.observableArrayList(result);
+            tabelaProdutos.setItems(obsresult);
         }
         
     }
     @FXML
     private void btnBuscaProdNomeClick(ActionEvent event){
-        System.out.println("nome");
+        List<Produto> result = d.consultarlike(Produto.class, "nome", txtNomeProd.getText());
+        if (result.isEmpty()){
+            lblStatusConProd.setText("Nenhum produto encontrado.");
+        }else{            
+            ObservableList<Produto> obsresult = FXCollections.observableArrayList(result);
+            tabelaProdutos.setItems(obsresult);
+        }
     }
     
     @FXML

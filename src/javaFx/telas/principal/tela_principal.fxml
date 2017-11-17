@@ -250,15 +250,19 @@
             <Pane fx:id="consulProd" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2C2C31;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="txtCodProd" layoutX="58.0" layoutY="137.0" prefHeight="30.0" prefWidth="142.0" promptText="Código do produto" style="-fx-text-inner-color: white; -fx-prompt-text-fill: cdcdcd;" />
-                  <TableView fx:id="tabelaProdutos" layoutX="58.0" layoutY="198.0" prefHeight="366.0" prefWidth="591.0">
+                  <TableView fx:id="tabelaProdutos" layoutX="58.0" layoutY="198.0" prefHeight="408.0" prefWidth="909.0">
                     <columns>
                       <TableColumn fx:id="colid" prefWidth="48.0" text="ID" />
                       <TableColumn fx:id="colcodigo" prefWidth="102.0" text="Código" />
-                        <TableColumn fx:id="colnome" prefWidth="75.0" text="Nome" />
-                        <TableColumn fx:id="coldesc" prefWidth="157.0" text="Descrição" />
+                        <TableColumn fx:id="colnome" prefWidth="134.0" text="Nome" />
+                        <TableColumn fx:id="coldesc" prefWidth="168.0" text="Descrição" />
+                        <TableColumn fx:id="colvalcompra" minWidth="0.0" prefWidth="112.0" text="Val.Compra" />
+                        <TableColumn fx:id="colvalvenda" prefWidth="115.0" text="Val.Venda" />
+                        <TableColumn fx:id="colqtdestoque" prefWidth="81.0" text="Qtd.Estoque" />
+                        <TableColumn fx:id="colunidade" prefWidth="119.0" text="Unidade" />
                     </columns>
                   </TableView>
-                  <Button fx:id="btnBuscaProdID" layoutX="207.0" layoutY="140.0" mnemonicParsing="false" onAction="#btnBuscaProdIdClick" text="Buscar">
+                  <Button fx:id="btnBuscaProdID" layoutX="207.0" layoutY="140.0" mnemonicParsing="false" onAction="#btnBuscaProdIdClick" style="-fx-background-color: #476a9b; -fx-text-fill: #FFF;" text="Buscar">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -268,7 +272,7 @@
                      </graphic>
                   </Button>
                   <JFXTextField fx:id="txtNomeProd" layoutX="430.0" layoutY="137.0" prefHeight="30.0" prefWidth="142.0" promptText="Nome do Produto" style="-fx-text-inner-color: white; -fx-prompt-text-fill: cdcdcd;" />
-                  <Button fx:id="btnBuscaProdNome" layoutX="579.0" layoutY="140.0" mnemonicParsing="false" onAction="#btnBuscaProdNomeClick" text="Buscar">
+                  <Button fx:id="btnBuscaProdNome" layoutX="579.0" layoutY="140.0" mnemonicParsing="false" onAction="#btnBuscaProdNomeClick" style="-fx-background-color: #476a9b; -fx-text-fill: #FFF;" text="Buscar">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>

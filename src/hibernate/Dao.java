@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -27,6 +28,15 @@ public class Dao {
         Criteria crit = this.session.createCriteria(classe);
         crit.add(Restrictions.eq(coluna, parametro));
             List<Object> lista = crit.list();
+            session.close();
+            return lista;
+    }
+    
+    public List consultarlike(Class classe, String coluna, String parametro){
+        this.session = this.sf.openSession();
+        Criteria query = session.createCriteria(classe);
+        query.add(Restrictions.like(coluna, parametro, MatchMode.ANYWHERE));
+            List<Object> lista = query.list();
             session.close();
             return lista;
     }
